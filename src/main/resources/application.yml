@@ -1,4 +1,13 @@
----
 spring:
   datasource:
     schema: classpath:import.sql
+  output:
+    ansi:
+      enabled: detect
+  profiles:
+    active: @activeProfile@
+
+---
+spring:
+  profiles: dev
+
