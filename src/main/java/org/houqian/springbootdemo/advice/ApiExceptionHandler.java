@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.houqian.springbootdemo.exception.BizException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -41,11 +42,20 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     return new ResponseEntity<>(errorDetails, HttpStatus.OK);
   }
 
+  @ExceptionHandler(BizException.class)
+  public final ResponseEntity<ErrorDetails> handleBizxceptions(Exception ex, WebRequest request) {
+
+    ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(),
+            request.getDescription(false), 900);
+    log.error("==============================业务异常================================");
+    log.error(errorDetails.toString());
+    return new ResponseEntity<>(errorDetails, HttpStatus.OK);
+  }
 
   @NoArgsConstructor
   @Data
   @AllArgsConstructor
-  public class ErrorDetails {
+  private class ErrorDetails {
     private Date timestamp;
     private String message;
     private String details;
