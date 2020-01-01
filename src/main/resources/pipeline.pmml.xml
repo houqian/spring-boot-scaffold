@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PMML xmlns="http://www.dmg.org/PMML-4_3" xmlns:data="http://jpmml.org/jpmml-model/InlineTable" version="4.3">
+    <Header>
+        <Application name="JPMML-SparkML" version="1.5.3"/>
+        <Timestamp>2019-05-31T08:03:52Z</Timestamp>
+    </Header>
+    <DataDictionary>
+        <DataField name="Species" optype="categorical" dataType="string">
+            <Value value="versicolor"/>
+            <Value value="virginica"/>
+            <Value value="setosa"/>
+        </DataField>
+        <DataField name="Petal_Width" optype="categorical" dataType="string">
+            <Value value="0.2"/>
+            <Value value="1.3"/>
+            <Value value="1.5"/>
+            <Value value="1.8"/>
+            <Value value="2.3"/>
+            <Value value="1.4"/>
+            <Value value="0.4"/>
+            <Value value="1"/>
+            <Value value="0.3"/>
+            <Value value="2.1"/>
+            <Value value="2"/>
+            <Value value="0.1"/>
+            <Value value="1.9"/>
+            <Value value="1.2"/>
+            <Value value="1.6"/>
+            <Value value="2.4"/>
+            <Value value="1.1"/>
+            <Value value="2.5"/>
+            <Value value="2.2"/>
+            <Value value="1.7"/>
+            <Value value="0.5"/>
+            <Value value="0.6"/>
+        </DataField>
+    </DataDictionary>
+    <TreeModel functionName="classification" missingValueStrategy="nullPrediction" splitCharacteristic="multiSplit">
+        <MiningSchema>
+            <MiningField name="Species" usageType="target"/>
+            <MiningField name="Petal_Width"/>
+        </MiningSchema>
+        <Output>
+            <OutputField name="pmml(prediction)" optype="categorical" dataType="string" feature="predictedValue"
+                         isFinalResult="false"/>
+            <OutputField name="prediction" optype="categorical" dataType="double" feature="transformedValue">
+                <MapValues outputColumn="data:output" dataType="double">
+                    <FieldColumnPair field="pmml(prediction)" column="data:input"/>
+                    <InlineTable>
+                        <row>
+                            <data:input>versicolor</data:input>
+                            <data:output>0</data:output>
+                        </row>
+                        <row>
+                            <data:input>virginica</data:input>
+                            <data:output>1</data:output>
+                        </row>
+                        <row>
+                            <data:input>setosa</data:input>
+                            <data:output>2</data:output>
+                        </row>
+                    </InlineTable>
+                </MapValues>
+            </OutputField>
+            <OutputField name="probability(versicolor)" optype="continuous" dataType="double" feature="probability"
+                         value="versicolor"/>
+            <OutputField name="probability(virginica)" optype="continuous" dataType="double" feature="probability"
+                         value="virginica"/>
+            <OutputField name="probability(setosa)" optype="continuous" dataType="double" feature="probability"
+                         value="setosa"/>
+        </Output>
+        <Node>
+            <True/>
+            <Node score="setosa" recordCount="29">
+                <SimplePredicate field="Petal_Width" operator="equal" value="0.2"/>
+                <ScoreDistribution value="versicolor" recordCount="0.0"/>
+                <ScoreDistribution value="virginica" recordCount="0.0"/>
+                <ScoreDistribution value="setosa" recordCount="29.0"/>
+            </Node>
+            <Node score="versicolor" recordCount="13">
+                <SimplePredicate field="Petal_Width" operator="equal" value="1.3"/>
+                <ScoreDistribution value="versicolor" recordCount="13.0"/>
+                <ScoreDistribution value="virginica" recordCount="0.0"/>
+                <ScoreDistribution value="setosa" recordCount="0.0"/>
+            </Node>
+            <Node score="setosa" recordCount="7">
+                <SimplePredicate field="Petal_Width" operator="equal" value="0.4"/>
+                <ScoreDistribution value="versicolor" recordCount="0.0"/>
+                <ScoreDistribution value="virginica" recordCount="0.0"/>
+                <ScoreDistribution value="setosa" recordCount="7.0"/>
+            </Node>
+            <Node score="setosa" recordCount="7">
+                <SimplePredicate field="Petal_Width" operator="equal" value="0.3"/>
+                <ScoreDistribution value="versicolor" recordCount="0.0"/>
+                <ScoreDistribution value="virginica" recordCount="0.0"/>
+                <ScoreDistribution value="setosa" recordCount="7.0"/>
+            </Node>
+            <Node score="setosa" recordCount="5">
+                <SimplePredicate field="Petal_Width" operator="equal" value="0.1"/>
+                <ScoreDistribution value="versicolor" recordCount="0.0"/>
+                <ScoreDistribution value="virginica" recordCount="0.0"/>
+                <ScoreDistribution value="setosa" recordCount="5.0"/>
+            </Node>
+            <Node score="virginica" recordCount="89">
+                <True/>
+                <ScoreDistribution value="versicolor" recordCount="37.0"/>
+                <ScoreDistribution value="virginica" recordCount="50.0"/>
+                <ScoreDistribution value="setosa" recordCount="2.0"/>
+            </Node>
+        </Node>
+    </TreeModel>
+</PMML>

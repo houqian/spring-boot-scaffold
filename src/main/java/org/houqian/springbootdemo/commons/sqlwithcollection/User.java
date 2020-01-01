@@ -1,8 +1,5 @@
 package org.houqian.springbootdemo.commons.sqlwithcollection;
 
-import com.googlecode.cqengine.attribute.Attribute;
-import com.googlecode.cqengine.attribute.SimpleAttribute;
-import com.googlecode.cqengine.query.option.QueryOptions;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +12,7 @@ public class User {
   private String username;
   private String password;
   private String fullname;
-  private Role role;
+  private Role   role;
 
   public User(String username, String password, String fullname, Role role) {
     super();
@@ -25,16 +22,16 @@ public class User {
     this.role = role;
   }
 
-  public static final Attribute<User, String> FULL_NAME = new SimpleAttribute<User, String>("fullname") {
-    @Override
-    public String getValue(User user, QueryOptions queryOptions) {
-      return user.fullname;
-    }
-
-  };
-
-  public static final Attribute<User, String> USERNAME = new SimpleAttribute<User, String>("username") {
-    @Override
-    public String getValue(User user, QueryOptions queryOptions) { return user.username; }
-  };
+//  public static final Attribute<User, String> FULL_NAME = new SimpleAttribute<User, String>("fullname") {
+//    @Override
+//    public String getValue(User user, QueryOptions queryOptions) {
+//      return user.fullname;
+//    }
+//
+//  };
+//
+//  public static final Attribute<User, String> USERNAME = new SimpleAttribute<User, String>("username") {
+//    @Override
+//    public String getValue(User user, QueryOptions queryOptions) { return user.username; }
+//  };
 }

@@ -11,7 +11,7 @@ public class JacksonAnnotationMain {
 
     // map键值对合并到所属对象属性-属性值
     jacksonAnnotation.testJsonAnyGetter();
-
+/*
     // GET方法重命名
     jacksonAnnotation.testJsonGetter();
 
@@ -25,7 +25,7 @@ public class JacksonAnnotationMain {
     jacksonAnnotation.testJsonValue();
 
     // 修改RootName
-    jacksonAnnotation.testJsonRootName();
+    jacksonAnnotation.testJsonRootName();*/
 
 
   }

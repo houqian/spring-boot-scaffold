@@ -3,9 +3,7 @@ package org.houqian.springbootdemo.job.elasticjob;
 import com.dangdang.ddframe.job.reg.zookeeper.ZookeeperConfiguration;
 import com.dangdang.ddframe.job.reg.zookeeper.ZookeeperRegistryCenter;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 //@Configuration
 //@ConditionalOnExpression("'${regCenter.serverList}'.length() > 0")
