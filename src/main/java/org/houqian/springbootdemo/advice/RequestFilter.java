@@ -10,24 +10,29 @@ import java.util.UUID;
 @Component
 public class RequestFilter implements Filter {
 
-    @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        try {
-            String mdcData = String.format("[requestId:%s] ", requestId());
-            MDC.put("mdcData", mdcData); //Referenced from logging configuration.
-            chain.doFilter(request, response);
-        } finally {
-            MDC.clear();
-        }
+  @Override
+  public void doFilter(ServletRequest request,
+                       ServletResponse response,
+                       FilterChain chain) throws IOException, ServletException {
+    try {
+      //Referenced from logging configuration.
+      String requestId = String.format("[%s]", requestId());
+      MDC.put("mdcData", requestId);
+      chain.doFilter(request, response);
+    } finally {
+      MDC.clear();
     }
+  }
 
-    private String requestId() {
-        return UUID.randomUUID().toString();
-    }
+  private String requestId() {
+    return UUID.randomUUID().toString().replaceAll("-", "");
+  }
 
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {}
+  @Override
+  public void init(FilterConfig filterConfig) throws ServletException {
+  }
 
-    @Override
-    public void destroy() {}
+  @Override
+  public void destroy() {
+  }
 }

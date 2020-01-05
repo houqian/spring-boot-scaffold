@@ -1,20 +1,25 @@
 spring:
   datasource:
-    schema: classpath:import.sql
+    #    schema: classpath:import.sql
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/eshop?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: 12345678
+      driver-class-name: com.mysql.cj.jdbc.Driver
   output:
     ansi:
       enabled: detect
   profiles:
     active: dev
 
-
-#logging:
-#  level:
-#    root: debug
-#    org.houqian: info
-#  pattern:
-#    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level RequestID:%X{Request_ID} %logger{36} - %msg%n"
-#    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level RequestID:%X{Request_ID} %logger{36} - %msg%n"
+logging:
+  level:
+    root: info
+    org.houqian: info
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level RequestID:%X{mdcData} %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level RequestID:%X{mdcData} %logger{36} - %msg%n"
 ---
 spring:
   profiles: dev
