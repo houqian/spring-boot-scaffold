@@ -1,7 +1,7 @@
 package org.houqian.springbootdemo.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import org.houqian.springbootdemo.dao.CommentInfoMapper;
+import org.houqian.springbootdemo.dao.slave.CommentInfoMapper;
 import org.houqian.springbootdemo.dto.CommentInfo;
 import org.houqian.springbootdemo.service.CommentService;
 import org.springframework.stereotype.Service;

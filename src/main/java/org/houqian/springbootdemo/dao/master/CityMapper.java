@@ -1,4 +1,4 @@
-package org.houqian.springbootdemo.dao;
+package org.houqian.springbootdemo.dao.master;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;

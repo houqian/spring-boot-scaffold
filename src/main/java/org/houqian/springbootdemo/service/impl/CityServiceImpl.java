@@ -1,7 +1,7 @@
 package org.houqian.springbootdemo.service.impl;
 
 import lombok.AllArgsConstructor;
-import org.houqian.springbootdemo.dao.CityMapper;
+import org.houqian.springbootdemo.dao.master.CityMapper;
 import org.houqian.springbootdemo.dto.City;
 import org.houqian.springbootdemo.service.CityService;
 import org.springframework.stereotype.Service;
