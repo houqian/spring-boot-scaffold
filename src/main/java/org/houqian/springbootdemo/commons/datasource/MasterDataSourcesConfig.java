@@ -38,7 +38,7 @@ public class MasterDataSourcesConfig {
     druidDataSource.setUrl(url);
     druidDataSource.setUsername(username);
     druidDataSource.setPassword(password);
-    druidDataSource.setDriverClassName("com.mysql.jdbc.Driver");
+    druidDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
     return druidDataSource;
   }
 
