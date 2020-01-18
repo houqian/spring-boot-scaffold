@@ -44,6 +44,14 @@
     </properties>
 
     <dependencies>
+
+        <!--apollo 客户端版本太低就不支持@ConfigurationProperties 和 @Value 了，比如 1.1.0 版本就是-->
+        <dependency>
+            <groupId>com.ctrip.framework.apollo</groupId>
+            <artifactId>apollo-client</artifactId>
+            <version>1.5.1</version>
+        </dependency>
+
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>

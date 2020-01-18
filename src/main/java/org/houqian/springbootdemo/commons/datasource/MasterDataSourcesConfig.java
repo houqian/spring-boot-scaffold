@@ -1,36 +1,51 @@
 package org.houqian.springbootdemo.commons.datasource;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 
-@Configuration
+@Slf4j
+@Component
 @MapperScan(basePackages = {"org.houqian.springbootdemo.dao.master"}, sqlSessionFactoryRef = "masterSqlSessionFactory")
 public class MasterDataSourcesConfig {
 
   // classpath:mapper/master/*.xml
 //  private static final String MAPPER_LOCAL = "classpath:mapper/master/*.xml";
 
+  private final String CONFIG_ON_APOLLO_PREFIX = "spring.datasource.druid.master";
+
+  @Value("${" + CONFIG_ON_APOLLO_PREFIX + ".url" + "}")
+  private String url;
+  @Value("${" + CONFIG_ON_APOLLO_PREFIX + ".username" + "}")
+  private String username;
+  @Value("${" + CONFIG_ON_APOLLO_PREFIX + ".password" + "}")
+  private String password;
+
   @Primary
   @Bean(name = "masterDataSource")
-  @ConfigurationProperties("spring.datasource.druid.master")
   public DruidDataSource druidDataSource() {
-    return new DruidDataSource();
+    DruidDataSource druidDataSource = new DruidDataSource();
+    druidDataSource.setUrl(url);
+    druidDataSource.setUsername(username);
+    druidDataSource.setPassword(password);
+    druidDataSource.setDriverClassName("com.mysql.jdbc.Driver");
+    return druidDataSource;
   }
 
   @Primary
   @Bean(name = "masterTransactionManager")
-  public DataSourceTransactionManager masterTransactionManager() {
-    return new DataSourceTransactionManager(druidDataSource());
+  public DataSourceTransactionManager masterTransactionManager(@Qualifier("masterDataSource") DruidDataSource druidDataSource) {
+    return new DataSourceTransactionManager(druidDataSource);
   }
 
   @Primary
@@ -41,4 +56,5 @@ public class MasterDataSourcesConfig {
 //    sessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(MAPPER_LOCAL));
     return sessionFactoryBean.getObject();
   }
+
 }
