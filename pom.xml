@@ -41,9 +41,25 @@
         <mapstruct.version>1.3.0.Final</mapstruct.version>
         <mybatis-plus-boot-starter.version>3.3.0</mybatis-plus-boot-starter.version>
         <druid-spring-boot-starter.version>1.1.17</druid-spring-boot-starter.version>
+        <log4j2-ttl-thread-context-map.version>1.3.2</log4j2-ttl-thread-context-map.version>
+        <hutool-all.version>5.4.2</hutool-all.version>
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool-all.version}</version>
+        </dependency>
+
+        <!-- 使log4j2的MDC数据支持线程池环境 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>log4j2-ttl-thread-context-map</artifactId>
+            <version>${log4j2-ttl-thread-context-map.version}</version>
+            <scope>runtime</scope>
+        </dependency>
 
         <!--apollo 客户端版本太低就不支持@ConfigurationProperties 和 @Value 了，比如 1.1.0 版本就是-->
         <dependency>
@@ -258,7 +274,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
-
 
 
         <!--        <dependency>-->
