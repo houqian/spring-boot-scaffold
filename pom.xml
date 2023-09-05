@@ -31,7 +31,7 @@
         <elastic-job-lite.version>2.0.5</elastic-job-lite.version>
         <cqengine.version>2.12.4</cqengine.version>
         <commons-codec.version>1.11</commons-codec.version>
-        <kafka-clients.version>2.2.0</kafka-clients.version>
+        <kafka-clients.version>2.6.3</kafka-clients.version>
         <streamex.version>0.6.8</streamex.version>
         <pmml-model.version>1.4.11</pmml-model.version>
         <pmml-evaluator.version>1.4.9</pmml-evaluator.version>
